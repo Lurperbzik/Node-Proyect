@@ -1,4 +1,4 @@
-### POSTMAN 
+### 
 POST http://localhost:3000/products/createProduct HTTP/1.1
 Content-Type: application/json
 
