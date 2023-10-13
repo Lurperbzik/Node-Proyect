@@ -13,12 +13,12 @@ app.use(express.json());
 
 
 app.get('/', (req, res) => {
-    res.json({
-        name: pkg.name,
-        author: pkg.author,
-        description: pkg.description,
-        version: pkg.version
-    });
+  res.json({
+    name: pkg.name,
+    author: pkg.author,
+    description: pkg.description,
+    version: pkg.version
+  });
 });
 
 app.use('/products', productRoutes);

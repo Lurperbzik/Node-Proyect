@@ -8,37 +8,37 @@ interface Product {
 }
 
 export class Model {
-  
+
   public async getProducts(): Promise<Product[]> {
-  
+
     return new Promise((resolve, reject) => {
       pool.query("SELECT name, price, num_products FROM Producto WHERE num_products > 0", async (err: any, res: any) => {
-        if(err){
+        if (err) {
           reject(err);
           return;
-        } 
+        }
 
-        if(res.rows.length > 0){
+        if (res.rows.length > 0) {
           resolve(res.rows);
-        } else{
+        } else {
           reject('No hay ningun producto en el stock');
         }
       });
     });
-  
+
   }
-  
+
   public async getProductById(id: any): Promise<Product> {
 
-    return new Promise((resolve,reject) => {
-      pool.query("SELECT name, price, num_products FROM Producto WHERE id = $1", [id], async (err:any, res:any) => {
-        if(err){
+    return new Promise((resolve, reject) => {
+      pool.query("SELECT name, price, num_products FROM Producto WHERE id = $1", [id], async (err: any, res: any) => {
+        if (err) {
           reject(err);
           return;
         }
-        if(res.rows.length > 0){
+        if (res.rows.length > 0) {
           resolve(res.rows);
-        } else{
+        } else {
           reject(`No hay ningun producto con id ${id}`);
         }
       });
@@ -48,25 +48,25 @@ export class Model {
   public async createProduct(name: any, price: any, num_products: any): Promise<String> {
 
     return new Promise((resolve, reject) => {
-      pool.query("INSERT INTO Producto (name, price, num_products) values ($1, $2, $3)", 
-      [name, price, num_products], 
-      async (err: any, res: any) => {
-        if(err){
-          console.error('Error Insert:', err);
-          reject(err);
-          return;
-        }
-        resolve('Anadido nuevo producto');
-      });
+      pool.query("INSERT INTO Producto (name, price, num_products) values ($1, $2, $3)",
+        [name, price, num_products],
+        async (err: any, res: any) => {
+          if (err) {
+            console.error('Error Insert:', err);
+            reject(err);
+            return;
+          }
+          resolve('Anadido nuevo producto');
+        });
     });
 
   }
 
   public async deleteProductById(id: any): Promise<String> {
-    
+
     return new Promise((resolve, reject) => {
-      pool.query("DELETE FROM Producto WHERE id = $1", [id], async (err:any, res: any) => {
-        if(err){
+      pool.query("DELETE FROM Producto WHERE id = $1", [id], async (err: any, res: any) => {
+        if (err) {
           console.error('Error en Delete', err);
           reject(err);
           return;
@@ -77,15 +77,15 @@ export class Model {
         }o`);
       });
     });
-  
+
   }
-  
+
   public async updateProductById(id: any, updateFields: string): Promise<String> {
 
     return new Promise((resolve, reject) => {
       const query = `UPDATE Producto SET ${updateFields} WHERE id = $1`;
-      pool.query(query, [id], async (err:any, res: any) => {
-        if(err){
+      pool.query(query, [id], async (err: any, res: any) => {
+        if (err) {
           console.error('Error en Update');
           reject(err);
           return;

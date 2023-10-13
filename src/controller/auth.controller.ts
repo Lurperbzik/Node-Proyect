@@ -12,7 +12,7 @@ export const login = async (req: Request, res: Response) => {
     const token = await model.login(email, password);
     res.json({ token });
   } catch (error) {
-    console.error('Error en login:', error );
+    console.error('Error en login:', error);
     res.status(401).json({ error: error });
   }
 };

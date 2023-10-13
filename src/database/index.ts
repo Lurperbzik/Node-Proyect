@@ -12,7 +12,8 @@ const pool = new Pool({
 
 pool.connect()
   .then((results) => {
-    console.log('Conetado a la DB');})
+    console.log('Conetado a la DB');
+  })
   .catch(error => console.error('Error al conectar a la DB: ', error));
 
-  export default pool
+export default pool

@@ -27,7 +27,7 @@ export class UserModel {
   }
 
   private generateToken(userId: string, userRol: string): string {
-    return jwt.sign({ userId, userRol }, this.secretKey, { expiresIn: '1h' } );
+    return jwt.sign({ userId, userRol }, this.secretKey, { expiresIn: '1h' });
   }
 }
 
